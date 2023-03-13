@@ -1,8 +1,10 @@
 const express = require('express');
-const sessionsRouter = express.Router();
-const sessions = require('../data/sessions.json');
 const debug = require('debug')('app:sessionRouter');
 const {MongoClient, ObjectId} = require('mongodb');
+const sessions = require('../data/sessions.json');
+const sessionsRouter = express.Router();
+
+
 
 sessionsRouter.route('/').get((req, res) =>{
     const uri='mongodb+srv://dbUser:8cjykPvhaZQyVfXP@globomantics.vzibpap.mongodb.net?retryWrites=true&w=majority';
