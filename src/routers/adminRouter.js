@@ -6,7 +6,7 @@ const adminRouter = express.Router();
 const sessions = require('../data/sessions.json');
 
 adminRouter.route('/').get((req,res)=>{
-   const uri='mongodb+srv://dbUser:8cjykPvhaZQyVfXP@globomantics.vzibpap.mongodb.net/?retryWrites=true&w=majority';
+   const uri='mongodb+srv://dbUser:8cjykPvhaZQyVfXP@globomantics.vzibpap.mongodb.net?retryWrites=true&w=majority';
    const dbName='globomantics';
 
    (async function mongo(){
@@ -24,7 +24,8 @@ adminRouter.route('/').get((req,res)=>{
     }catch(error){
         debug(error.stack);
     }
-   }())
+    client.close();
+   })();
    
 });
 
