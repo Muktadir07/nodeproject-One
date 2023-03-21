@@ -4,7 +4,13 @@ const {MongoClient, ObjectId} = require('mongodb');
 const sessions = require('../data/sessions.json');
 const sessionsRouter = express.Router();
 
-
+sessionsRouter.use((req,res,next) => {
+    if(req.user){
+        next();
+    }else{
+        res.redirect('/auth/signIn');
+    }
+})
 
 sessionsRouter.route('/').get((req, res) =>{
     const uri='mongodb+srv://dbUser:8cjykPvhaZQyVfXP@globomantics.vzibpap.mongodb.net?retryWrites=true&w=majority';
